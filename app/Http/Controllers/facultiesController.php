@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Faculty;
 
 class facultiesController extends Controller
 {
@@ -13,7 +14,8 @@ class facultiesController extends Controller
      */
     public function index()
     {
-        //
+        $faculties = Faculty::all();
+        return view('faculties.index',compact('faculties'));
     }
 
     /**
@@ -23,7 +25,7 @@ class facultiesController extends Controller
      */
     public function create()
     {
-        //
+        return view('Faculties.create');
     }
 
     /**
@@ -34,7 +36,10 @@ class facultiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $faculty = new Faculty;
+        $faculty->name = $request->name;
+        $faculty->save();
+        return redirect('faculties.index');
     }
 
     /**
@@ -45,7 +50,8 @@ class facultiesController extends Controller
      */
     public function show($id)
     {
-        //
+        $faculty = Faculty::find($id);
+        return view('faculties.show');
     }
 
     /**
@@ -56,7 +62,8 @@ class facultiesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $faculty = Faculty::find($id);
+        return view('faculties.edit');
     }
 
     /**
@@ -68,7 +75,10 @@ class facultiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $faculty = new Faculty;
+        $faculty->name = $request->name;
+        $faculty->update();
+        return redirect('/faculties');
     }
 
     /**
@@ -79,6 +89,8 @@ class facultiesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $faculty = Faculty::find($id);
+        $faculty->delete();
+        return redirect('/faculties');
     }
 }

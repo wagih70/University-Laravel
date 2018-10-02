@@ -19,5 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::resource('/faculties', 'facultyController');
-Route::resource('/faculties/majors','facultyController');
+Route::resource('/faculties','facultiesController');
+Route::resource('/faculties/majors','majorsController');
