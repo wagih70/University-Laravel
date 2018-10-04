@@ -6,13 +6,13 @@
            <div class="col-8 text-center offset-2 mt-5">
             
 
-            <h1>Edit Faculty</h1>
+            <h1>Edit major</h1>
 
-             <form method="post" action="{{ url('/faculties', ['id' => $faculty->id]) }}">
+             <form method="post" action="{ url('/majors', ['id' => $major->id]">
               {!! csrf_field() !!}
               {{ method_field('PATCH') }}
               <div class="form-group">
-                <textarea class="form-control mt-3"  rows="3" placeholder="{{$faculty->name}}" name='name'></textarea>
+                <textarea class="form-control mt-3"  rows="3" placeholder="{{$major->name}}" name='name'></textarea>
               </div>
               <button type="submit" class="btn btn-success" value="submit">Update</button>
             </form>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Faculty;
+use App\Majors;
+
 
 class facultiesController extends Controller
 {
@@ -39,7 +41,7 @@ class facultiesController extends Controller
         $faculty = new Faculty;
         $faculty->name = $request->name;
         $faculty->save();
-        return redirect('faculties.index');
+        return redirect('/faculties');
     }
 
     /**
@@ -50,8 +52,8 @@ class facultiesController extends Controller
      */
     public function show($id)
     {
-        $faculty = Faculty::find($id);
-        return view('faculties.show');
+        $majors = Faculty::find($id)->majors;
+        return view('faculties.show',compact('majors'));
     }
 
     /**
@@ -63,7 +65,7 @@ class facultiesController extends Controller
     public function edit($id)
     {
         $faculty = Faculty::find($id);
-        return view('faculties.edit');
+        return view('faculties.edit',compact('faculty'));
     }
 
     /**
@@ -73,9 +75,8 @@ class facultiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Faculty $faculty)
     {
-        $faculty = new Faculty;
         $faculty->name = $request->name;
         $faculty->update();
         return redirect('/faculties');

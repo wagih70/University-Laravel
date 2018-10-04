@@ -12,7 +12,7 @@
               @foreach($faculties as $faculty)
               <li class="list-group-item d-flex justify-content-between align-items-center">
                  
-                {{$faculty->name}}
+                <a href="/faculties/{{$faculty->id}}"> {{$faculty->name}} </a>
                 <div class="d-flex justify-content-between align-items-center"> 
                 <a href='/faculties/{{$faculty->id}}/edit'>
                   <button name="submit" class="btn btn-success mr-3">Edit</button>
@@ -25,19 +25,14 @@
                     {!! csrf_field() !!}
                     <button class="btn btn-default" >Delete</button>
                 </form>
-                <!-- <form action='/faculties/{{$faculty->id}}' method="delete">
-                  {{csrf_field()}}
-                  <input type="hidden"  value="delete">
-                  <button name="submit" class="btn btn-danger">Delete</button>
-                </form> -->
-              @endforeach
+              
                 </div>
               </li> 
-              
+              @endforeach
             </ul>
 
 
-            <a href="#"><button class="btn btn-dark mt-3">Add Todo</button></a>
+            <a href="/faculties/create"><button class="btn btn-dark mt-3">Add Faculty</button></a>
 
 
           </div>

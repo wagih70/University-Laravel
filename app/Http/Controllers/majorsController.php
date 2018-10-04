@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Major;
+use App\Faculty;
 
 class majorsController extends Controller
 {
@@ -13,7 +15,8 @@ class majorsController extends Controller
      */
     public function index()
     {
-        //
+        $majors = Faculty::all()->majors;
+        return view('majors.index',compact('majors'));
     }
 
     /**
@@ -23,7 +26,8 @@ class majorsController extends Controller
      */
     public function create()
     {
-        //
+        return view('majors.create');
+
     }
 
     /**
@@ -34,7 +38,10 @@ class majorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $major = new Major;
+        $major->name = $request->name;
+        $major->save();
+        return redirect('/faculties');
     }
 
     /**
@@ -45,7 +52,8 @@ class majorsController extends Controller
      */
     public function show($id)
     {
-        //
+        $major = Major::find($id)->faculty;
+        return view('majors.show',compact('major'));
     }
 
     /**
@@ -56,7 +64,8 @@ class majorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $major = Major::find($id);
+        return view('majors.edit',compact('major'));
     }
 
     /**
@@ -68,7 +77,9 @@ class majorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $major->name = $request->name;
+        $major->update();
+        return redirect('/majors');
     }
 
     /**
@@ -79,6 +90,8 @@ class majorsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $major = Major::find($id);
+        $major->delete();
+        return redirect('/majors');
     }
 }

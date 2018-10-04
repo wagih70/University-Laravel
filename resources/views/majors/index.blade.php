@@ -6,7 +6,8 @@
            <div class="col-8 text-center offset-2 mt-5">
             
 
-            <h1>Majors</h1>
+            <h1></h1>
+
             <ul class="list-group">
               @foreach($majors as $major)
               <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -19,7 +20,7 @@
                 
 
                
-                <form action="{{ url('/majors', ['id' => $major->id]) }}" method="post">
+                <form action="{{ url('/majors',['id' => $major->id]) }}" method="post">
                     <input type="hidden" name="_method" value="delete" />
                     {!! csrf_field() !!}
                     <button class="btn btn-default" >Delete</button>
@@ -31,7 +32,7 @@
             </ul>
 
 
-            <a href="/faculties"><button class="btn btn-dark mt-3">Back</button></a>
+            <a href="/faculties/create"><button class="btn btn-dark mt-3">Add Faculty</button></a>
 
 
           </div>
